@@ -23,9 +23,10 @@ public class CubePlacer : MonoBehaviour {
 
     private void PlaceCubeNear(Vector3 clickPoint)
     {
-        Debug.Log("PCN");
-        Vector3 finalposition = grid.GetNearestPointOnGrid(Vector3.down);
-        GameObject.CreatePrimitive(PrimitiveType.Cube).transform.position = finalposition;
+        Vector3 finalposition = grid.GetNearestPointOnGrid(clickPoint);
+        GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        cube.transform.position = finalposition;
+        cube.GetComponent<MeshRenderer>().material.color = Color.blue;
         //GameObject.CreatePrimitive(PrimitiveType.Sphere).transform.position = nearPoint;
     }
 }

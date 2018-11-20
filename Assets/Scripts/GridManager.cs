@@ -21,8 +21,7 @@ public class GridManager : MonoBehaviour {
             (float)zCount * size);
 
         result += transform.position;
-
-        Debug.Log(result);
+       
         return result;
     }
 
