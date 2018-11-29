@@ -1,4 +1,4 @@
-﻿Shader "Unlit/GridFrag"
+﻿Shader "Grid/Unlit"
 {
 	Properties
 	{
@@ -47,7 +47,7 @@
 			{
 				v2f o;
 				o.vertex = UnityObjectToClipPos(v.vertex);
-				o.uv = mul(unity_ObjectToWorld, v.vertex).xz / _GridSpacing;
+				o.uv = TRANSFORM_TEX(v.uv, _MainTex);
 				UNITY_TRANSFER_FOG(o,o.vertex);
 				return o;
 			}
@@ -57,12 +57,11 @@
 				// sample the texture
 				fixed4 col = tex2D(_MainTex, i.uv) * _BaseColour;
 
-				float2 wrapped = frac(i.uv);
-                float2 range = abs(wrapped);
+				float2 pos = 10.0 /_GridSpacing * i.uv;
+				float2 wrapped = frac(pos);
+                float2 speeds = fwidth(pos);
 
-                float2 speeds = fwidth(i.uv);
-
-                float2 pixelRange = range/speeds;
+                float2 pixelRange = wrapped/speeds;
                 float lineWeight = saturate(min(pixelRange.x, pixelRange.y) - _LineWidth);
 
                 // apply fog

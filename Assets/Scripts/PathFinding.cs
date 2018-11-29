@@ -66,10 +66,8 @@ public class PathFinding : MonoBehaviour
                 if (!explored_nodes.Contains(child_node)) {
                     // Mark the node as explored
                     explored_nodes.Add(child_node);
-
                     // Store a reference to the previous node
                     parent_nodes.Add(child_node, current_node);
-
                     // Add this to the queue of nodes to examine
                     nodes_to_check.Enqueue(child_node);
                 }
@@ -104,7 +102,7 @@ public class PathFinding : MonoBehaviour
         // Check of de coordinaten vallen binnen het grid en of de positie niet al is bezet
         IList<Vector2Int> walkable_nodes = new List<Vector2Int>();
         for (int i = 0; i < possible_nodes.Count; i++) {
-            if (possible_nodes[i].x > 0 && possible_nodes[i].y > 0 &&
+            if (possible_nodes[i].x >= 0 && possible_nodes[i].y >= 0 &&
                 possible_nodes[i].x < grid.GridWidth && possible_nodes[i].y < grid.GridHeight &&
                 !grid.IsOccupied[possible_nodes[i].x, possible_nodes[i].y]) {
                 // Voeg de node toe als hij nog vrij is

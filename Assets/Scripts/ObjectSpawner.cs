@@ -23,7 +23,12 @@ public class ObjectSpawner : MonoBehaviour
     // grid layer is een layer die ik heb gedefined in Unity en is het negende layer.
     // Door 1 negen plaatsen naar links te shiften krijg ik de negende layer.
     private readonly int grid_layer = 1 << 9;
-    Vector3 destination = new Vector3(0.5f, 0, 0.5f);
+    Vector3 destination;
+
+    private void Start()
+    {
+        destination = grid.GetPositionFromCoordinate(new Vector2Int(0, 0));
+    }
 
     private void Update()
     {

@@ -81,6 +81,8 @@ public class GridManager : MonoBehaviour
         // maar mocht het object niet helemaal perfect gealigned zijn kan het voor
         // problemen zorgen.
         Vector3 rounded = GetNearestPointOnGrid(position);
+        // Zet de offset weer terug
+        rounded -= transform.position;
         // Dank je wel Wolfram voor de versimpeling van mijn functies
         return new Vector2Int((int)((grid_width - cell_size) / 2f + rounded.x),
                               (int)((grid_height - cell_size) / 2f + rounded.z));
@@ -95,10 +97,12 @@ public class GridManager : MonoBehaviour
     {
         // Dit doet precies het tegen overgestelde van GetCoordinateFromPosition
         // Dank je wel Wolfram voor de versimpeling van mijn functies
-        return new Vector3 {
+        Vector3 position = new Vector3 {
             x = 0.5f * (-grid_width + cell_size + 2 * coordinate.x),
             y = transform.position.y,
             z = 0.5f * (-grid_height + cell_size + 2 * coordinate.y)
         };
+
+        return position + transform.position;
     }
 }
