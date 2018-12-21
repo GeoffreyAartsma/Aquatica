@@ -6,40 +6,33 @@ using UnityEngine.UI;
 public class WaterScript : MonoBehaviour
 {
     [SerializeField]
-    Text countWater;
+    float interval;
 
     [SerializeField]
-    int watercount;
+    public WaterCounter watercount; 
 
-    [SerializeField]
-    Camera cam;
+    float timer;
+
+    public bool IsProducing;
 
     void Start()
     {
-
+        timer = Time.time;
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (IsProducing && timer + interval <= Time.time)
         {
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
-                if (hit.transform.tag == "WaterResource")
-                {
-                    watercount = watercount + 1;
-                    Debug.Log("Water +1");
-
-                    SetCountWater();
-                }
+            watercount.AddWater();
+                
+            timer = Time.time;
         }
     }
 
-    // Update Wood UI
-    void SetCountWater()
+    public void SetTransparency(int percentage)
     {
-        countWater.text = "Water: " + watercount.ToString();
-        Debug.Log("Water Updated");
+        Renderer renderer = GetComponent<Renderer>();
+        renderer.material.color = new Color(renderer.material.color.r, renderer.material.color.g, renderer.material.color.b, percentage / 100f);
     }
 }

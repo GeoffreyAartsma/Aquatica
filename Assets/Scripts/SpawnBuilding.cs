@@ -6,11 +6,27 @@ using UnityEngine;
 public class SpawnBuilding : MonoBehaviour {
 
     [SerializeField]
-    GameObject prefab;
-    
+    GameObject waterPrefab;
+
+    [SerializeField]
+    GameObject woodPrefab;
+
+    [SerializeField]
+    GameObject ballistaPrefab;
+
+    [SerializeField]
+    GameObject defensePrefab;
+
     GameObject prefabclone;
 
-    public bool spawnPrefab;
+    [SerializeField]
+    public WaterCounter watercount;
+
+    [SerializeField]
+    public WoodCounter woodcount;
+
+    private int BuildIndex;
+
 
     private int grid_layer = 1 << 9 | 1 << 11;
 
@@ -21,47 +37,84 @@ public class SpawnBuilding : MonoBehaviour {
 
     public void SpawnPrefab()
     {
-        if (Input.GetMouseButton(0))
+        if (GUIUtility.hotControl != 0)
         {
-            if (spawnPrefab == false)
-            {
-                return;
-            }
-
-            if (GUIUtility.hotControl != 0)   
-            {
-                return;
-            }
-
-            Vector3 spawnPos = Vector3.zero;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 100f, grid_layer))
-            {
-                if (hit.transform.tag == "WaterResource" || hit.transform.tag == "WoodResource")
-                {
-                    return;
-                }
-                spawnPos = hit.point;
-            }
-            
-
-            if (prefabclone == null)
-            {
-                prefabclone = Instantiate(prefab, spawnPos, Quaternion.identity) as GameObject;
-            }
-            
-            prefabclone.transform.position = spawnPos;
+            return;
         }
 
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonDown(0) && prefabclone != null)
         {
+            if (prefabclone.GetComponent<WaterScript>() != null)
+            {
+                prefabclone.GetComponent<WaterScript>().SetTransparency(100);
+                prefabclone.GetComponent<WaterScript>().IsProducing = true;
+            }
+            else if (prefabclone.GetComponent<WoodScript>() != null)
+            {
+                prefabclone.GetComponent<WoodScript>().SetTransparency(100);
+                prefabclone.GetComponent<WoodScript>().IsProducing = true;
+            }
+
             prefabclone = null;
+            BuildIndex = 0;
         }
+
+        if (BuildIndex == 0)
+        {
+            return;
+        }
+
+        Vector3 spawnPos = Vector3.zero;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 100f, grid_layer))
+        {
+            if (hit.transform.tag == "WaterResource" || hit.transform.tag == "WoodResource")
+            {
+                return;
+            }
+            spawnPos = hit.point;
+        }
+
+        spawnPos.y += 0.2f;
+        prefabclone.transform.position = spawnPos;
     }
 
-    public void ToggleBuildMode()
+    public void SetBuildIndex(int index)
     {
-        spawnPrefab = !spawnPrefab;
+        Destroy(prefabclone);
+        BuildIndex = index;
+
+        switch (BuildIndex)
+        {
+            case 0:
+                return;
+            case 1:
+                prefabclone = Instantiate(waterPrefab) as GameObject;
+                break;
+            case 2:
+                prefabclone = Instantiate(woodPrefab) as GameObject;
+                break;
+            case 3:
+                prefabclone = Instantiate(ballistaPrefab) as GameObject;
+                break;
+            case 4:
+                prefabclone = Instantiate(defensePrefab) as GameObject;
+                break;
+            default:
+                Debug.LogError("Unexpected BuildIndex");
+                break;
+        }
+
+        if (prefabclone.GetComponent<WaterScript>() != null)
+        {
+            prefabclone.GetComponent<WaterScript>().SetTransparency(50);
+            prefabclone.GetComponent<WaterScript>().watercount = watercount;
+        }
+        else if (prefabclone.GetComponent<WoodScript>() != null)
+        {
+            prefabclone.GetComponent<WoodScript>().SetTransparency(50);
+            prefabclone.GetComponent<WoodScript>().woodcount = woodcount;
+        }
     } 
 }

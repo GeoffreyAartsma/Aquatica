@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33125910769018726}
   - component: {fileID: 23819493509275882}
   - component: {fileID: 65094854947802418}
+  - component: {fileID: 114430311162891292}
   m_Layer: 11
   m_Name: WoodResrouce
   m_TagString: WoodResource
@@ -96,3 +97,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114430311162891292
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1071328733393838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26154f43dd1ef264a822da29fe1db5af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interval: 2
+  woodcount: {fileID: 0}
+  IsProducing: 0

@@ -6,40 +6,33 @@ using UnityEngine.UI;
 public class WoodScript : MonoBehaviour
 {
     [SerializeField]
-    Text countWood;
+    float interval;
+
+    float timer;
 
     [SerializeField]
-    int woodcount;
+    public WoodCounter woodcount;
 
-    [SerializeField]
-    Camera cam;
+    public bool IsProducing;
 
     void Start()
     {
-        
+        timer = Time.time;
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (IsProducing && timer + interval <= Time.time)
         {
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
-                if (hit.transform.tag == "WoodResource")
-                {
-                    woodcount = woodcount + 1;
-                    Debug.Log("Wood +1");
+            woodcount.AddWood();
 
-                    SetCountWood();
-                }
+            timer = Time.time;
         }
     }
 
-    // Update Wood UI
-    void SetCountWood()
+    public void SetTransparency(int percentage)
     {
-        countWood.text = "Wood: " + woodcount.ToString();
-        Debug.Log("Wood Updated");
+        Renderer renderer = GetComponent<Renderer>();
+        renderer.material.color = new Color(renderer.material.color.r, renderer.material.color.g, renderer.material.color.b, percentage / 100f);
     }
 }
