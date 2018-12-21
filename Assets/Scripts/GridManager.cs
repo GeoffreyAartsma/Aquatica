@@ -105,4 +105,11 @@ public class GridManager : MonoBehaviour
 
         return position + transform.position;
     }
+
+    public void SetSelectionGrid(Vector2Int from_coord, Vector2Int to_coord)
+    {
+        Vector4 area = new Vector4(from_coord.x, from_coord.y, to_coord.x, to_coord.y);
+        Debug.Log(area);
+        GetComponent<MeshRenderer>().material.SetVector("_SelectedArea", area);
+    }
 }

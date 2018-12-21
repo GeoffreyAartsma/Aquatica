@@ -8,7 +8,9 @@
 		_Glossiness("Smoothness", Range(0,1)) = 0.5
 		_Metallic("Metallic", Range(0,1)) = 0.0
 		_GridSpacing("Grid size", Float) = 10
-		_LineWidth("Grid width", Float) = 1
+		_LineWidth("Line width", Float) = 1
+		_SelectionColor("Color selection", Color) = (1,0,0,0)
+		_SelectedArea("Selected area (xy are minumum, zw are maximum", Vector) = (0.1, 0.1, 0.1, 0.1)
 	}
 
 	SubShader
@@ -37,19 +39,26 @@
 		fixed4 _GridColor;
 		float _GridSpacing;
 		float _LineWidth;
+		fixed4 _SelectionColor;
+		half4 _SelectedArea;
 
 		void surf(Input IN, inout SurfaceOutputStandard o)
  		{
 			// Albedo comes from a texture tinted by color
-			fixed4 col = tex2D(_MainTex, IN.uv_MainTex) * _BaseColor;
+			fixed4 background_color = tex2D(_MainTex, IN.uv_MainTex) * _BaseColor;
+
+			// Selection
+			half2 bl = step(_SelectedArea.xy, IN.uv_MainTex);
+			half2 tr = (1.0 + step(_SelectedArea.zw / 10.0, IN.uv_MainTex)) * -1.0 + 2.0;
+			fixed4 col = lerp(background_color, _SelectionColor, bl.x * bl.y * tr.x * tr.y);
 
 			// grid overlay
-			float2 pos = 10.0 /_GridSpacing * IN.uv_MainTex;
-			float2 wrapped = frac(pos);
-            float2 speeds = fwidth(pos);
+			half2 pos = 10.0 /_GridSpacing * IN.uv_MainTex;
+			half2 wrapped = frac(pos);
+            half2 speeds = fwidth(pos);
 
-            float2 pixelRange = wrapped/speeds;
-            float lineWeight = saturate(min(pixelRange.x, pixelRange.y) - _LineWidth);
+            half2 pixelRange = wrapped/speeds;
+            half lineWeight = saturate(min(pixelRange.x, pixelRange.y) - _LineWidth);
 			col.rgb = lerp(_GridColor, col, lineWeight);
 
 			o.Albedo = col.rgb;

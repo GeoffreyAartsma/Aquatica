@@ -66,6 +66,11 @@ public class ObjectSpawner : MonoBehaviour
                 destination = hit.point;
             }
         }
+        
+        Ray mouse_ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+        if (Physics.Raycast(mouse_ray, out hit, 100f, grid_layer)) {
+            grid.SetSelectionGrid(grid.GetCoordinateFromPosition(hit.point), grid.GetCoordinateFromPosition(hit.point) + new Vector2Int(1,1));
+        }
     }
 
     /// <summary>
