@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnBuilding : MonoBehaviour {
+public class SpawnBuilding : MonoBehaviour
+{
 
     [SerializeField]
     GameObject waterPrefab;
@@ -20,10 +21,7 @@ public class SpawnBuilding : MonoBehaviour {
     GameObject prefabclone;
 
     [SerializeField]
-    public WaterCounter watercount;
-
-    [SerializeField]
-    public WoodCounter woodcount;
+    public ResourceManager resourceManager;
 
     private int BuildIndex;
 
@@ -32,7 +30,7 @@ public class SpawnBuilding : MonoBehaviour {
 
     void Update()
     {
-        SpawnPrefab();   
+        SpawnPrefab();
     }
 
     public void SpawnPrefab()
@@ -44,16 +42,8 @@ public class SpawnBuilding : MonoBehaviour {
 
         if (Input.GetMouseButtonDown(0) && prefabclone != null)
         {
-            if (prefabclone.GetComponent<WaterScript>() != null)
-            {
-                prefabclone.GetComponent<WaterScript>().SetTransparency(100);
-                prefabclone.GetComponent<WaterScript>().IsProducing = true;
-            }
-            else if (prefabclone.GetComponent<WoodScript>() != null)
-            {
-                prefabclone.GetComponent<WoodScript>().SetTransparency(100);
-                prefabclone.GetComponent<WoodScript>().IsProducing = true;
-            }
+            prefabclone.GetComponent<ResourceScript>().SetTransparency(100);
+            prefabclone.GetComponent<ResourceScript>().IsProducing = true;
 
             prefabclone = null;
             BuildIndex = 0;
@@ -91,9 +81,11 @@ public class SpawnBuilding : MonoBehaviour {
                 return;
             case 1:
                 prefabclone = Instantiate(waterPrefab) as GameObject;
+                prefabclone.GetComponent<ResourceScript>().resourceType = ResourceScript.ResourceType.Water;
                 break;
             case 2:
                 prefabclone = Instantiate(woodPrefab) as GameObject;
+                prefabclone.GetComponent<ResourceScript>().resourceType = ResourceScript.ResourceType.Wood;
                 break;
             case 3:
                 prefabclone = Instantiate(ballistaPrefab) as GameObject;
@@ -106,15 +98,7 @@ public class SpawnBuilding : MonoBehaviour {
                 break;
         }
 
-        if (prefabclone.GetComponent<WaterScript>() != null)
-        {
-            prefabclone.GetComponent<WaterScript>().SetTransparency(50);
-            prefabclone.GetComponent<WaterScript>().watercount = watercount;
-        }
-        else if (prefabclone.GetComponent<WoodScript>() != null)
-        {
-            prefabclone.GetComponent<WoodScript>().SetTransparency(50);
-            prefabclone.GetComponent<WoodScript>().woodcount = woodcount;
-        }
-    } 
+        prefabclone.GetComponent<ResourceScript>().SetTransparency(50);
+        prefabclone.GetComponent<ResourceScript>().resourceManager = resourceManager;
+    }
 }
