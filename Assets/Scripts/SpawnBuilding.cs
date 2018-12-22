@@ -45,6 +45,9 @@ public class SpawnBuilding : MonoBehaviour
             prefabclone.GetComponent<ResourceScript>().SetTransparency(100);
             prefabclone.GetComponent<ResourceScript>().IsProducing = true;
 
+            resourceManager.RemoveWood(3);
+            resourceManager.RemoveWater(1);
+
             prefabclone = null;
             BuildIndex = 0;
         }
