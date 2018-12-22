@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33227728604894232}
   - component: {fileID: 23467912072248310}
   - component: {fileID: 65443523838873032}
-  - component: {fileID: 114681383090214314}
+  - component: {fileID: 114181066707794818}
   m_Layer: 0
   m_Name: Rain_Building
   m_TagString: WaterResource
@@ -97,7 +97,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.288586, y: 2.1674526, z: 3.413773}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114681383090214314
+--- !u!114 &114181066707794818
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -105,9 +105,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1425825077007852}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: baa803f7982ec5e4ba232639eafeadd3, type: 3}
+  m_Script: {fileID: 11500000, guid: 0f946883e17a1774fbf0c20a9cd594da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   interval: 1
-  watercount: {fileID: 0}
+  resourceManager: {fileID: 0}
   IsProducing: 0
+  resourceType: 0
