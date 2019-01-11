@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33563204559260948}
   - component: {fileID: 23649236246891102}
   - component: {fileID: 65227889077874798}
-  - component: {fileID: 114435485175627438}
+  - component: {fileID: 114758997094151088}
   m_Layer: 0
   m_Name: Resource_Net
   m_TagString: WoodResource
@@ -98,7 +98,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 7.0555453, y: 2.638335, z: 4.328487}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114435485175627438
+--- !u!114 &114758997094151088
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,9 +106,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1105223963452782}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26154f43dd1ef264a822da29fe1db5af, type: 3}
+  m_Script: {fileID: 11500000, guid: 0f946883e17a1774fbf0c20a9cd594da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interval: 1
-  woodcount: {fileID: 0}
+  interval: 3.5
+  resourceManager: {fileID: 0}
   IsProducing: 0
+  resourceType: 1

@@ -33,44 +33,56 @@ public class SpawnBuilding : MonoBehaviour
         SpawnPrefab();
     }
 
+
     public void SpawnPrefab()
     {
-        if (GUIUtility.hotControl != 0)
+        // Don't place a building if we are trying to press a button on the GUI
+        // or ff no building is selected
+        if (GUIUtility.hotControl != 0 || prefabclone == null)
         {
             return;
         }
 
-        if (Input.GetMouseButtonDown(0) && prefabclone != null)
-        {
-            prefabclone.GetComponent<ResourceScript>().SetTransparency(100);
-            prefabclone.GetComponent<ResourceScript>().IsProducing = true;
-
-            resourceManager.RemoveWood(3);
-            resourceManager.RemoveWater(1);
-
-            prefabclone = null;
-            BuildIndex = 0;
-        }
-
-        if (BuildIndex == 0)
-        {
-            return;
-        }
-
+        RaycastHit hit;
         Vector3 spawnPos = Vector3.zero;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 100f, grid_layer))
         {
             if (hit.transform.tag == "WaterResource" || hit.transform.tag == "WoodResource")
             {
                 return;
             }
+
             spawnPos = hit.point;
+            spawnPos.y += 0.2f;
+            prefabclone.transform.position = spawnPos;
+        }
+        else
+        {
+            // Not clicking on grid so stop trying to place object
+            return;
         }
 
-        spawnPos.y += 0.2f;
-        prefabclone.transform.position = spawnPos;
+        // If we are placing a building and press the left mouse button
+        if (Input.GetMouseButtonDown(0))
+        {
+            // Try to buy the building
+            if (resourceManager.RemoveWood(3) == false ||
+                resourceManager.RemoveWater(1) == false)
+            {
+                Destroy(prefabclone);
+                return;
+            }
+
+            // Set transparency back to 100%
+            prefabclone.GetComponent<ResourceScript>().SetTransparency(100);
+            // Start producing wood or water
+            prefabclone.GetComponent<ResourceScript>().IsProducing = true;
+
+            // Empty the selected prefab
+            prefabclone = null;
+            BuildIndex = 0;
+        }
     }
 
     public void SetBuildIndex(int index)
