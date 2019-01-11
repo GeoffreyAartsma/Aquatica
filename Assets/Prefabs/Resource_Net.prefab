@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f946883e17a1774fbf0c20a9cd594da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interval: 1
+  interval: 3.5
   resourceManager: {fileID: 0}
   IsProducing: 0
   resourceType: 1

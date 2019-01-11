@@ -8,8 +8,8 @@ public class ResourceManager : MonoBehaviour
     [SerializeField]
     Text WoodText, WaterText;
 
-    private int woodCount;
-    private int waterCount;
+    private int woodCount = 10;
+    private int waterCount = 5;
 
     private void Update()
     {
