@@ -16,7 +16,7 @@ public class SpawnBuilding : MonoBehaviour
     GameObject ballistaPrefab;
 
     [SerializeField]
-    GameObject defensePrefab;
+    GameObject ballistaSlowPrefab;
 
     GameObject prefabclone;
 
@@ -74,10 +74,13 @@ public class SpawnBuilding : MonoBehaviour
                 return;
             }
 
-            // Set transparency back to 100%
-            prefabclone.GetComponent<ResourceScript>().SetTransparency(100);
-            // Start producing wood or water
-            prefabclone.GetComponent<ResourceScript>().IsProducing = true;
+            if (BuildIndex == 1 || BuildIndex == 2)
+            {
+                // Set transparency back to 100%
+                prefabclone.GetComponent<ResourceScript>().SetTransparency(100);
+                // Start producing wood or water
+                prefabclone.GetComponent<ResourceScript>().IsProducing = true;
+            }
 
             // Empty the selected prefab
             prefabclone = null;
@@ -97,23 +100,26 @@ public class SpawnBuilding : MonoBehaviour
             case 1:
                 prefabclone = Instantiate(waterPrefab) as GameObject;
                 prefabclone.GetComponent<ResourceScript>().resourceType = ResourceScript.ResourceType.Water;
+
+                prefabclone.GetComponent<ResourceScript>().SetTransparency(50);
+                prefabclone.GetComponent<ResourceScript>().resourceManager = resourceManager;
                 break;
             case 2:
                 prefabclone = Instantiate(woodPrefab) as GameObject;
                 prefabclone.GetComponent<ResourceScript>().resourceType = ResourceScript.ResourceType.Wood;
+
+                prefabclone.GetComponent<ResourceScript>().SetTransparency(50);
+                prefabclone.GetComponent<ResourceScript>().resourceManager = resourceManager;
                 break;
             case 3:
                 prefabclone = Instantiate(ballistaPrefab) as GameObject;
                 break;
             case 4:
-                prefabclone = Instantiate(defensePrefab) as GameObject;
+                prefabclone = Instantiate(ballistaSlowPrefab) as GameObject;
                 break;
             default:
                 Debug.LogError("Unexpected BuildIndex");
                 break;
         }
-
-        prefabclone.GetComponent<ResourceScript>().SetTransparency(50);
-        prefabclone.GetComponent<ResourceScript>().resourceManager = resourceManager;
     }
 }
