@@ -7,6 +7,7 @@ TagManager:
   - Soldier
   - WaterResource
   - WoodResource
+  - Enemy
   layers:
   - Default
   - TransparentFX

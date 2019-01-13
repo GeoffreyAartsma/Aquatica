@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 23641813203751286}
   - component: {fileID: 65369898698424926}
   - component: {fileID: 114969393069113064}
+  - component: {fileID: 114382777194197334}
   m_Layer: 0
   m_Name: Ballista_Attack
   m_TagString: Untagged
@@ -89,7 +90,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1569561566623892}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.6837337, y: 0.269, z: 2.536449}
+  m_LocalPosition: {x: 2.68, y: 0.299, z: 2.192}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224361209000014868}
@@ -172,6 +173,21 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114382777194197334
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1569561566623892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc68fcd37ed84984da654801a509bb98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 15
+  enemyTag: Enemy
+  partToRotate: {fileID: 4077831602216804}
+  turnSpeed: 10
 --- !u!114 &114455397713438446
 MonoBehaviour:
   m_ObjectHideFlags: 1
