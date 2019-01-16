@@ -40,16 +40,19 @@ public class PathFinding : MonoBehaviour
         // Voeg de start node toe aan de queue. Anders is de queue leeg
         nodes_to_check.Enqueue(start_node);
         // Zolang we nog nodes hebben om te zoeken
-        while (nodes_to_check.Count > 0) {
+        while (nodes_to_check.Count > 0)
+        {
             // Krijg de node vooraan de queue en delete hem uit de queue
             Vector2Int current_node = nodes_to_check.Dequeue();
-            if (current_node == target_node) {
+            if (current_node == target_node)
+            {
                 // Als de target coordinaat gevonden is dan moet het pad worden gereconstructueerd.
                 // Dit wordt gedaan door alle nodes af te gaan naar hun parent en ze dan toe te voegen 
                 // aan een nieuwe lijst. Deze lijst wordt dan gereturned.
                 List<Vector2Int> path = new List<Vector2Int>();
 
-                while (current_node != start_node) {
+                while (current_node != start_node)
+                {
                     // Voeg de node die we nu behandelen toe aan het pad
                     path.Add(current_node);
                     // En zoek met de current_node als key de parent in de dictionary
@@ -62,8 +65,10 @@ public class PathFinding : MonoBehaviour
             }
 
             IList<Vector2Int> nodes = GetWalkableNodes(current_node);
-            foreach (Vector2Int child_node in nodes) {
-                if (!explored_nodes.Contains(child_node)) {
+            foreach (Vector2Int child_node in nodes)
+            {
+                if (!explored_nodes.Contains(child_node))
+                {
                     // Mark the node as explored
                     explored_nodes.Add(child_node);
                     // Store a reference to the previous node
@@ -101,10 +106,12 @@ public class PathFinding : MonoBehaviour
 
         // Check of de coordinaten vallen binnen het grid en of de positie niet al is bezet
         IList<Vector2Int> walkable_nodes = new List<Vector2Int>();
-        for (int i = 0; i < possible_nodes.Count; i++) {
+        for (int i = 0; i < possible_nodes.Count; i++)
+        {
             if (possible_nodes[i].x >= 0 && possible_nodes[i].y >= 0 &&
-                possible_nodes[i].x < grid.GridWidth && possible_nodes[i].y < grid.GridHeight &&
-                !grid.IsOccupied[possible_nodes[i].x, possible_nodes[i].y]) {
+                possible_nodes[i].x < grid.GridSize && possible_nodes[i].y < grid.GridSize &&
+                !grid.IsOccupied[possible_nodes[i].x, possible_nodes[i].y])
+            {
                 // Voeg de node toe als hij nog vrij is
                 walkable_nodes.Add(possible_nodes[i]);
             }

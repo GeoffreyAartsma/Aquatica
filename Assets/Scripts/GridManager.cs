@@ -2,34 +2,24 @@
 
 public class GridManager : MonoBehaviour
 {
-    private int grid_width;
-    private int grid_height;
+    private int grid_size;
 
     [SerializeField]
     private float cell_size;
-    
+
     /// <summary>
     /// Matrix of booleans holding if a coordinate is obstructed or not.
     /// </summary>
     public bool[,] IsOccupied { get; set; }
 
     /// <summary>
-    /// Get the grid width of this instance.
+    /// Get the grid size of this instance. With one cell being one unit.
     /// </summary>
-    public int GridWidth
+    public int GridSize
     {
-        get {
-            return this.grid_width;
-        }
-    }
-
-    /// <summary>
-    /// Get the grid_height of this instance.
-    /// </summary>
-    public int GridHeight
-    {
-        get {
-            return this.grid_height;
+        get
+        {
+            return this.grid_size;
         }
     }
 
@@ -37,10 +27,22 @@ public class GridManager : MonoBehaviour
     {
         // De keer 10 is omdat de plane in unity bij default een grote heeft van 10.
         // Dus een scale van 1 geeft een plane met een grote van 10 x 10
-        grid_width = (int)(transform.localScale.x * 10f / cell_size);
-        grid_height = (int)(transform.localScale.z * 10f / cell_size);
-        IsOccupied = new bool[grid_width, grid_height];
-        GetComponent<MeshRenderer>().material.SetFloat("_GridSpacing", cell_size);
+        grid_size = Mathf.RoundToInt(transform.localScale.x * 10f / cell_size);
+        IsOccupied = new bool[grid_size, grid_size];
+
+        GetComponent<MeshRenderer>().sharedMaterial.SetInt("_GridSize", grid_size);
+        GetComponent<MeshRenderer>().sharedMaterial.SetFloat("_CellSize", cell_size);
+    }
+
+    /// <summary>
+    /// Called when the script is loaded or a value is changed in the
+    /// inspector (Called in the editor only).
+    /// </summary>
+    void OnValidate()
+    {
+        grid_size = Mathf.RoundToInt(transform.localScale.x * 10f / cell_size);
+        GetComponent<MeshRenderer>().sharedMaterial.SetInt("_GridSize", grid_size);
+        GetComponent<MeshRenderer>().sharedMaterial.SetFloat("_Cellsize", cell_size);
     }
 
     /// <summary>
@@ -84,8 +86,8 @@ public class GridManager : MonoBehaviour
         // Zet de offset weer terug
         rounded -= transform.position;
         // Dank je wel Wolfram voor de versimpeling van mijn functies
-        return new Vector2Int((int)((grid_width - cell_size) / 2f + rounded.x),
-                              (int)((grid_height - cell_size) / 2f + rounded.z));
+        return new Vector2Int((int)((grid_size - cell_size) / 2f + rounded.x),
+                              (int)((grid_size - cell_size) / 2f + rounded.z));
     }
 
     /// <summary>
@@ -97,10 +99,11 @@ public class GridManager : MonoBehaviour
     {
         // Dit doet precies het tegen overgestelde van GetCoordinateFromPosition
         // Dank je wel Wolfram voor de versimpeling van mijn functies
-        Vector3 position = new Vector3 {
-            x = 0.5f * (-grid_width + cell_size + 2 * coordinate.x),
+        Vector3 position = new Vector3
+        {
+            x = 0.5f * (-grid_size + cell_size + 2 * coordinate.x),
             y = transform.position.y,
-            z = 0.5f * (-grid_height + cell_size + 2 * coordinate.y)
+            z = 0.5f * (-grid_size + cell_size + 2 * coordinate.y)
         };
 
         return position + transform.position;

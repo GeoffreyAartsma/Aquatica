@@ -35,33 +35,42 @@ public class ObjectSpawner : MonoBehaviour
         RaycastHit hit;
 
         // Bouw een muur met linker muisknop
-        if (Input.GetMouseButtonDown(0)) {
+        if (Input.GetMouseButtonDown(0))
+        {
             Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
-            if (Physics.Raycast(ray, out hit, 100f, grid_layer)) {
+            if (Physics.Raycast(ray, out hit, 100f, grid_layer))
+            {
                 PlaceObject(hit.point, Spawnable.Wall);
             }
         }
 
         // Bouw een soldier met rechter muisknop
-        if (Input.GetMouseButtonDown(1)) {
+        if (Input.GetMouseButtonDown(1))
+        {
             // De ray moet in dit geval ook kunnen colliden met de soldier layer ( | is een or bitwise operator) 
             // Soldier layer is layer 10
             int layer_mask = (1 << 10) | grid_layer;
             Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
-            if (Physics.Raycast(ray, out hit, 100f, layer_mask)) {
-                if (hit.transform.tag == "Soldier") {
+            if (Physics.Raycast(ray, out hit, 100f, layer_mask))
+            {
+                if (hit.transform.tag == "Soldier")
+                {
                     // Delete de soldier als je er met rmb op klikt
                     Destroy(hit.transform.gameObject);
-                } else {
+                }
+                else
+                {
                     PlaceObject(hit.point, Spawnable.Soldier);
                 }
             }
         }
 
         // Zet de destination voor nieuwe gespawnde soldiers naar hit.point
-        if (Input.GetMouseButtonDown(2)) {
-            Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);    
-            if (Physics.Raycast(ray, out hit, 100f, grid_layer)) {
+        if (Input.GetMouseButtonDown(2))
+        {
+            Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+            if (Physics.Raycast(ray, out hit, 100f, grid_layer))
+            {
                 // Hoeft niet afgerond te worden, word al gedaan in Pathfinding class
                 destination = hit.point;
             }
@@ -83,28 +92,29 @@ public class ObjectSpawner : MonoBehaviour
         if (grid.IsOccupied[coordinate.x, coordinate.y]) { return; }
 
         // Als de cell nog vrij is
-        switch (spawnable) {
-        case Spawnable.Wall:
-            GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            cube.transform.position = new_position;
-            cube.GetComponent<MeshRenderer>().material.color = Color.blue;
-            grid.IsOccupied[coordinate.x, coordinate.y] = true;
-            break;
-        case Spawnable.Soldier:
-            // Instantieer een nieuw kopie van de soldier prefab op de gegeven positie zonder rotatie
-            GameObject new_soldier = Instantiate(soldier_prefab, new_position, Quaternion.identity);
-            // Een reference naar het script van de net gespawnde soldier
-            SoldierWalk soldier_walk = new_soldier.GetComponent<SoldierWalk>();
-            // Zorg ervoor dat de grid en pathfinder gelinked zijn aan het terrein
-            soldier_walk.grid = grid;
-            soldier_walk.pathfinder = pathfinder;
+        switch (spawnable)
+        {
+            case Spawnable.Wall:
+                GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                cube.transform.position = new_position;
+                cube.GetComponent<MeshRenderer>().material.color = Color.blue;
+                grid.IsOccupied[coordinate.x, coordinate.y] = true;
+                break;
+            case Spawnable.Soldier:
+                // Instantieer een nieuw kopie van de soldier prefab op de gegeven positie zonder rotatie
+                GameObject new_soldier = Instantiate(soldier_prefab, new_position, Quaternion.identity);
+                // Een reference naar het script van de net gespawnde soldier
+                SoldierWalk soldier_walk = new_soldier.GetComponent<SoldierWalk>();
+                // Zorg ervoor dat de grid en pathfinder gelinked zijn aan het terrein
+                soldier_walk.grid = grid;
+                soldier_walk.pathfinder = pathfinder;
 
-            // Begin met lopen (Dit moet eruit maar voor het testen is het makkelijk dat hij direct begint)
-            StartCoroutine(soldier_walk.MoveTo(destination));
-            break;
-        default:
-            Debug.Log("Spawn type not yet implemented.");
-            break;
+                // Begin met lopen (Dit moet eruit maar voor het testen is het makkelijk dat hij direct begint)
+                StartCoroutine(soldier_walk.MoveTo(destination));
+                break;
+            default:
+                Debug.Log("Spawn type not yet implemented.");
+                break;
         }
     }
 }
