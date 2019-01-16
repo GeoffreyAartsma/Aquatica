@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -146,6 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aeba72a9f7bc2224e8979bf4f43ded73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  grid: {fileID: 0}
 --- !u!4 &139890369
 Transform:
   m_ObjectHideFlags: 0
@@ -157,7 +158,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &268993819
 GameObject:
@@ -319,11 +320,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4237282376109384, guid: 5fdde8b4e502022469cfbf106892f35a, type: 2}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4237282376109384, guid: 5fdde8b4e502022469cfbf106892f35a, type: 2}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1239624070860652, guid: 5fdde8b4e502022469cfbf106892f35a, type: 2}
       propertyPath: m_IsActive
@@ -332,7 +333,7 @@ Prefab:
     - target: {fileID: 114933774841783634, guid: 5fdde8b4e502022469cfbf106892f35a,
         type: 2}
       propertyPath: cell_size
-      value: 0.5
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5fdde8b4e502022469cfbf106892f35a, type: 2}
@@ -1203,7 +1204,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2047672288
 GameObject:

@@ -13,7 +13,7 @@ public class EnemySpawner : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("grid width: " + grid.GridWidth);
+            Debug.Log("grid width: " + grid.GridSize);
             SpawnEnemy();
         }
     }
@@ -26,18 +26,18 @@ public class EnemySpawner : MonoBehaviour
         {
             case 0: // North
                 Debug.Log("NORTH");
-                coord = new Vector2Int(Random.Range(0, grid.GridWidth - 1), grid.GridWidth - 1);
+                coord = new Vector2Int(Random.Range(0, grid.GridSize - 1), grid.GridSize - 1);
                 break;
             case 1: // East
-                coord = new Vector2Int(grid.GridWidth - 1, Random.Range(0, grid.GridWidth - 1));
+                coord = new Vector2Int(grid.GridSize - 1, Random.Range(0, grid.GridSize - 1));
                 Debug.Log("EAST");
                 break;
             case 2: // South
-                coord = new Vector2Int(Random.Range(0, grid.GridWidth - 1), 0);
+                coord = new Vector2Int(Random.Range(0, grid.GridSize - 1), 0);
                 Debug.Log("SOUTH");
                 break;
             case 3: // West
-                coord = new Vector2Int(0, Random.Range(0, grid.GridWidth - 1));
+                coord = new Vector2Int(0, Random.Range(0, grid.GridSize - 1));
                 Debug.Log("WEST");
                 break;
 

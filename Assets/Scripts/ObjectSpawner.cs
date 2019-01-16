@@ -11,6 +11,8 @@ public class ObjectSpawner : MonoBehaviour
     [SerializeField]
     private GameObject soldier_prefab;
 
+
+
     /// <summary>
     /// List of spawnable objects. Logic for object spawning is defined in PlaceObject().
     /// </summary>
