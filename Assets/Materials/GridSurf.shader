@@ -7,8 +7,9 @@
 		_MainTex("Albedo (RGB)", 2D) = "white" {}
 		_Glossiness("Smoothness", Range(0,1)) = 0.5
 		_Metallic("Metallic", Range(0,1)) = 0.0
-		_GridSpacing("Grid size", Float) = 10
-		_LineWidth("Grid width", Float) = 1
+		_CellSize("Cell size", Float) = 10 
+		_GridSize("Total Grid size", Int) = 100
+		_LineWidth("Line width", Float) = 1
 	}
 
 	SubShader
@@ -35,8 +36,9 @@
 		half _Metallic;
 		fixed4 _BaseColor;
 		fixed4 _GridColor;
-		float _GridSpacing;
+		float _CellSize;
 		float _LineWidth;
+        int _GridSize;
 
 		void surf(Input IN, inout SurfaceOutputStandard o)
  		{
@@ -44,7 +46,7 @@
 			fixed4 col = tex2D(_MainTex, IN.uv_MainTex) * _BaseColor;
 
 			// grid overlay
-			float2 pos = 10.0 /_GridSpacing * IN.uv_MainTex;
+			float2 pos = (float)_GridSize / _CellSize * IN.uv_MainTex;
 			float2 wrapped = frac(pos);
             float2 speeds = fwidth(pos);
 
