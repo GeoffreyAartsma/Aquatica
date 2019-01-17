@@ -19,10 +19,9 @@ public class BuildingHealth : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
-        currentHealth -= amount;
-
+        currentHealth -= amount;      
         healthBar.fillAmount = currentHealth / startHealth;
-
+     
         if (currentHealth <= 0 && !isDead)
         {
             Dead();
@@ -31,6 +30,7 @@ public class BuildingHealth : MonoBehaviour
 
     private void Dead()
     {
+        Debug.Log("ME IS DEAD");
         isDead = true;
     }
 

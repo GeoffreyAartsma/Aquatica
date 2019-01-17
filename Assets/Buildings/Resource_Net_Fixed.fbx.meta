@@ -1,22 +1,20 @@
 fileFormatVersion: 2
-guid: d18b637c4bfb7b2438b057b638eafcbb
+guid: 69b3a707ed547f94baa339b35514b75e
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: Ballista
-    100002: //RootNode
-    100004: Platform
-    400000: Ballista
-    400002: //RootNode
-    400004: Platform
-    2100000: No Name
-    2300000: Ballista
-    2300002: Platform
-    3300000: Ballista
-    3300002: Platform
-    4300000: Ballista
-    4300002: Platform
-  externalObjects: {}
+    100000: //RootNode
+    400000: //RootNode
+    2100000: Material.001
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Resourche_Capture_Net_Final
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: 90935c3ea7515c74a815b482eb919a4d, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -47,7 +45,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 3
+    globalScale: 5
     meshCompression: 0
     addColliders: 0
     importVisibility: 1

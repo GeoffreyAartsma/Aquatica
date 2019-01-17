@@ -1,32 +1,30 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class WaveTimer : MonoBehaviour
 {
-    float progress;
-    void Start()
-    {
-        progress = 0f;
-    }
+    [SerializeField]
+    float waitTime = 1f;
+
+    [SerializeField]
+    int enemyCount;
+
+    float timer;
+
+    [SerializeField]
+    EnemySpawner enemySpawner;
 
     void Update()
     {
-        progress += 1f * Time.deltaTime;
-
-        if (progress > 100f)
+        timer += Time.deltaTime;
+        if (timer > waitTime)
         {
-            SpawnWave();
+            print("Timer is done");
+            timer = 0f;
+
+            for (int i = 0; i < enemyCount; i++)
+            {
+                enemySpawner.SpawnEnemy();
+            }
         }
-    }
-
-    void SpawnWave()
-    {
-
-    }
-
-    public void Reset()
-    {
-        progress = 0f;
     }
 }

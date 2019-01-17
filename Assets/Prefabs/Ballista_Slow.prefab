@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 65222340423976180}
   - component: {fileID: 114350675688489970}
   - component: {fileID: 114322446119268428}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Ballista_Slow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 223609680125952160}
   - component: {fileID: 114016364746930730}
   - component: {fileID: 114131435016351440}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: HealthCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 224387616996586908}
   - component: {fileID: 222713724916769308}
   - component: {fileID: 114796404401255726}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 224514668404409100}
   - component: {fileID: 222837517242661066}
   - component: {fileID: 114653083351752786}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: HealthBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ Transform:
   m_GameObject: {fileID: 1052600120329382}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.1753675, y: 0.298, z: 1.8320415}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 224210463435863572}
   m_Father: {fileID: 0}
@@ -139,7 +139,7 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1052600120329382}
-  m_Mesh: {fileID: 4300000, guid: d66d4b881eb284b41b6970fba13e38a8, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 37421175baa86a7498601362d445b325, type: 3}
 --- !u!65 &65222340423976180
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -147,7 +147,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1052600120329382}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.75997853, y: 0.6019295, z: 0.8984244}

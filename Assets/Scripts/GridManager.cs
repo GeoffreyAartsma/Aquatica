@@ -23,7 +23,7 @@ public class GridManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void Awake()
     {
         // De keer 10 is omdat de plane in unity bij default een grote heeft van 10.
         // Dus een scale van 1 geeft een plane met een grote van 10 x 10

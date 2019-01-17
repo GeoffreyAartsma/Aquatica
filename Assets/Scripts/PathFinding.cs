@@ -59,12 +59,16 @@ public class PathFinding : MonoBehaviour
                     current_node = parent_nodes[current_node];
                 }
 
+                // Remove target node from list
+                path.RemoveAt(0);
+
                 // Het pad is eerst van eind punt naar begin. Moet even worden omgedraaid.
                 path.Reverse();
+
                 return path;
             }
 
-            IList<Vector2Int> nodes = GetWalkableNodes(current_node);
+            IList<Vector2Int> nodes = GetWalkableNodes(current_node, target_node);
             foreach (Vector2Int child_node in nodes)
             {
                 if (!explored_nodes.Contains(child_node))
@@ -88,7 +92,7 @@ public class PathFinding : MonoBehaviour
     /// </summary>
     /// <param name="source_node"></param>
     /// <returns>List of all possible nodes to walk on.</returns>
-    IList<Vector2Int> GetWalkableNodes(Vector2Int source_node)
+    IList<Vector2Int> GetWalkableNodes(Vector2Int source_node, Vector2Int target_node)
     {
         // Maak eerst een lijst met alle mogelijke coordinaten
         IList<Vector2Int> possible_nodes = new List<Vector2Int>() {
@@ -108,6 +112,12 @@ public class PathFinding : MonoBehaviour
         IList<Vector2Int> walkable_nodes = new List<Vector2Int>();
         for (int i = 0; i < possible_nodes.Count; i++)
         {
+            if (possible_nodes[i] == target_node)
+            {
+                walkable_nodes.Add(possible_nodes[i]);
+                return walkable_nodes;
+            }
+
             if (possible_nodes[i].x >= 0 && possible_nodes[i].y >= 0 &&
                 possible_nodes[i].x < grid.GridSize && possible_nodes[i].y < grid.GridSize &&
                 !grid.IsOccupied[possible_nodes[i].x, possible_nodes[i].y])

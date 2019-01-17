@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 223236379393594476}
   - component: {fileID: 114887488589587652}
   - component: {fileID: 114296178910586876}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: HealthCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 224275085631779456}
   - component: {fileID: 222288032115155532}
   - component: {fileID: 114504226418562790}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: HealthBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 65443523838873032}
   - component: {fileID: 114181066707794818}
   - component: {fileID: 114547831003633354}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Rain_Building
   m_TagString: WaterResource
   m_Icon: {fileID: 0}
@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 224187857678270470}
   - component: {fileID: 222115307058838290}
   - component: {fileID: 114338456802503386}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,14 +89,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1425825077007852}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
   m_LocalPosition: {x: 0.6534724, y: 0.089, z: 3.7595923}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 224863851544731784}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
 --- !u!23 &23467912072248310
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -138,7 +138,7 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1425825077007852}
-  m_Mesh: {fileID: 4300000, guid: 88e555400ca5b4741a9931dfcc29ae40, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 06420e57fc5c3fb4da92b54048addf30, type: 3}
 --- !u!65 &65443523838873032
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -146,7 +146,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1425825077007852}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.8577173, y: 0.4334905, z: 0.68275464}
