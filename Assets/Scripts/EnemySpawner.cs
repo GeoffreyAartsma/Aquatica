@@ -8,6 +8,12 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     GridManager grid;
 
+    [SerializeField]
+    GameObject enemyPrefab;
+
+    [SerializeField]
+    PathFinding pathfinder;
+
     // Update is called once per frame
     void Update()
     {
@@ -18,7 +24,7 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    void SpawnEnemy(bool retry = false)
+    public void SpawnEnemy(bool retry = false)
     {
         Vector2Int coord = Vector2Int.zero;
 
@@ -47,14 +53,16 @@ public class EnemySpawner : MonoBehaviour
 
         if (!grid.IsOccupied[coord.x, coord.y])
         {
-            // Cube wordt gespawnd
-            GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            // Positie van cube wordt bepaald door de coordinate die hierboven wordt aangegeven
-            cube.transform.position = grid.GetPositionFromCoordinate(coord);
-            // Cube wordt blauw gemaakt
-            cube.GetComponent<MeshRenderer>().material.color = Color.blue;
-            // Coordinate wordt bezet
-            grid.IsOccupied[coord.x, coord.y] = true;
+            Vector3 position = grid.GetPositionFromCoordinate(coord);
+            // Instantieer een nieuw kopie van de soldier prefab op de gegeven positie zonder rotatie
+            GameObject enemy = Instantiate(enemyPrefab, position, Quaternion.identity);
+            // Een reference naar het script van de net gespawnde soldier
+            SoldierWalk enemyWalk = enemy.GetComponent<SoldierWalk>();
+            // Zorg ervoor dat de grid en pathfinder gelinked zijn aan het terrein
+            enemyWalk.grid = grid;
+            enemyWalk.pathfinder = pathfinder;
+            Vector3 destination = Vector3.zero;
+            StartCoroutine(enemyWalk.MoveTo(destination));
         }
         else
         {

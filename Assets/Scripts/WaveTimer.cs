@@ -1,10 +1,17 @@
 ﻿using UnityEngine;
 
-public class Timer : MonoBehaviour
+public class WaveTimer : MonoBehaviour
 {
-    public float waitTime = 1f;
+    [SerializeField]
+    float waitTime = 1f;
+
+    [SerializeField]
+    int enemyCount;
 
     float timer;
+
+    [SerializeField]
+    EnemySpawner enemySpawner;
 
     void Update()
     {
@@ -13,6 +20,11 @@ public class Timer : MonoBehaviour
         {
             print("Timer is done");
             timer = 0f;
+
+            for (int i = 0; i < enemyCount; i++)
+            {
+                enemySpawner.SpawnEnemy();
+            }
         }
     }
 }

@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 223907393349922560}
   - component: {fileID: 114283143926789184}
   - component: {fileID: 114166655433542814}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: HealthCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 65227889077874798}
   - component: {fileID: 114758997094151088}
   - component: {fileID: 114595776213094340}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Resource_Net
   m_TagString: WoodResource
   m_Icon: {fileID: 0}
@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 224224608637358262}
   - component: {fileID: 222356117889912588}
   - component: {fileID: 114375670153248488}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: HealthBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 224035104246843480}
   - component: {fileID: 222458261125788546}
   - component: {fileID: 114071744409972840}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,7 +146,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1105223963452782}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 7.0555453, y: 2.638335, z: 4.328487}

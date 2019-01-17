@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114053658765451932}
   - component: {fileID: 114488389104292090}
   - component: {fileID: 114305405866527376}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: HealthCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 224252991922187920}
   - component: {fileID: 222709340719831174}
   - component: {fileID: 114730364476987200}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 224201184741548402}
   - component: {fileID: 222802233455394668}
   - component: {fileID: 114507648226473978}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: HealthBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +75,8 @@ GameObject:
   - component: {fileID: 33284872874633416}
   - component: {fileID: 23062194937657950}
   - component: {fileID: 114099218295809284}
-  m_Layer: 0
+  - component: {fileID: 65123317123729432}
+  m_Layer: 12
   m_Name: Main_Building
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +90,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1583039181483890}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.296, y: 0.261, z: 0.32401133}
+  m_LocalPosition: {x: -0.10191476, y: 0.00000011920929, z: -4.6928535}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 224156639447524666}
@@ -144,6 +145,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1583039181483890}
   m_Mesh: {fileID: 4300000, guid: 1b4750ac33de9884e97a1fa1d2bbd680, type: 3}
+--- !u!65 &65123317123729432
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1583039181483890}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.7028476, y: 0.50313675, z: 0.8982968}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114053658765451932
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -177,7 +190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startHealth: 100
-  healthBar: {fileID: 0}
+  healthBar: {fileID: 114730364476987200}
 --- !u!114 &114305405866527376
 MonoBehaviour:
   m_ObjectHideFlags: 1

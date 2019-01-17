@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 65369898698424926}
   - component: {fileID: 114969393069113064}
   - component: {fileID: 114382777194197334}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Ballista_Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 223134040305590216}
   - component: {fileID: 114289660140916956}
   - component: {fileID: 114455397713438446}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: HealthCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 224636289808971968}
   - component: {fileID: 222067880896228146}
   - component: {fileID: 114951540297827044}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 224272747149546560}
   - component: {fileID: 222046239021713754}
   - component: {fileID: 114886653643584698}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: HealthBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,7 +147,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1569561566623892}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.7599786, y: 0.6019295, z: 0.8984244}
