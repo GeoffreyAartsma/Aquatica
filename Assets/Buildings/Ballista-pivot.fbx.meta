@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d18b637c4bfb7b2438b057b638eafcbb
+guid: 67ebe3a30aa3ba64c859f58f8ec0bc25
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -47,7 +47,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 0.05
     meshCompression: 0
     addColliders: 0
     importVisibility: 1
@@ -60,7 +60,7 @@ ModelImporter:
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
-    preserveHierarchy: 1
+    preserveHierarchy: 0
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001

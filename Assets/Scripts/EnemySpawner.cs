@@ -14,16 +14,6 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     PathFinding pathfinder;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Debug.Log("grid width: " + grid.GridSize);
-            SpawnEnemy();
-        }
-    }
-
     public void SpawnEnemy(bool retry = false)
     {
         Vector2Int coord = Vector2Int.zero;
@@ -57,8 +47,20 @@ public class EnemySpawner : MonoBehaviour
             // Zorg ervoor dat de grid en pathfinder gelinked zijn aan het terrein
             enemyWalk.grid = grid;
             enemyWalk.pathfinder = pathfinder;
-            Vector3 destination = Vector3.zero;
-            StartCoroutine(enemyWalk.MoveTo(destination));
+
+            Vector3 closestBuildingPos = Vector3.zero;
+            float closestDistance = float.MaxValue;
+            GameObject[] buildings = FindGameObjectsWithBuildingLayer();
+            
+            foreach (GameObject building in buildings) {
+                float distance = Vector3.Distance(position, building.transform.position);
+                if (distance < closestDistance) {
+                    closestBuildingPos = building.transform.position;
+                    closestDistance = distance;
+                }
+            }
+            
+            StartCoroutine(enemyWalk.MoveTo(closestBuildingPos));
         }
         else
         {
@@ -69,6 +71,24 @@ public class EnemySpawner : MonoBehaviour
             }
             SpawnEnemy(true);
         }
+    }
+
+    GameObject[] FindGameObjectsWithBuildingLayer()
+    {
+        List<GameObject> buildingList = new List<GameObject>();
+        GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
+
+        foreach (GameObject go in allObjects) {
+            // Building layer
+            if (go.activeInHierarchy && go.layer == 12)
+                buildingList.Add(go);
+        }
+
+        if (buildingList.Count == 0) {
+            return null;
+        }
+
+        return buildingList.ToArray();
     }
 }
 

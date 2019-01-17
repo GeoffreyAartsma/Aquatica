@@ -63,7 +63,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0
     - _GlossyReflections: 1
-    - _GridSize: 10
+    - _GridSize: 300
     - _GridSpacing: 0.1
     - _GridStep: 1
     - _GridThickness: 0.02
