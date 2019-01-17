@@ -54,7 +54,7 @@ public class SpawnBuilding : MonoBehaviour
             }
 
             spawnPos = hit.point;
-            spawnPos.y += 0.2f;
+            spawnPos.y += 0.4f;
             prefabclone.transform.position = spawnPos;
         }
         else
