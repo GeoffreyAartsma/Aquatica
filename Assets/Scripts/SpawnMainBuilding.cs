@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class SpawnMainBuilding : MonoBehaviour
 {
-
-    [SerializeField]
     GridManager grid;
 
     [SerializeField]
@@ -14,6 +12,7 @@ public class SpawnMainBuilding : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        grid = GetComponent<GridManager>();
         Vector2Int coord = grid.GetCoordinateFromPosition(Vector3.zero);
         grid.IsOccupied[coord.x, coord.y] = true;
         Instantiate(mainbuilding, grid.GetPositionFromCoordinate(coord), Quaternion.identity);
