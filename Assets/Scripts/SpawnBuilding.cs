@@ -23,6 +23,9 @@ public class SpawnBuilding : MonoBehaviour
     [SerializeField]
     public ResourceManager resourceManager;
 
+    [SerializeField]
+    GridManager grid;
+
     private int BuildIndex;
 
 
@@ -53,15 +56,22 @@ public class SpawnBuilding : MonoBehaviour
                 return;
             }
 
-            spawnPos = hit.point;
-            spawnPos.y += 0.2f;
-            prefabclone.transform.position = spawnPos;
+            // Rond de muispositie af naar het centrum van de cell
+            Vector3 new_position = grid.GetNearestPointOnGrid(hit.point);
+            // Converteer de positie naar een coordinate
+            Vector2Int coordinate = grid.GetCoordinateFromPosition(new_position);
+            // Als het coordinaat bezet is, stop dan met de functie (return)
+            if (grid.IsOccupied[coordinate.x, coordinate.y]) { return; }
+
+            prefabclone.transform.position = new_position;
         }
         else
         {
             // Not clicking on grid so stop trying to place object
             return;
         }
+
+
 
         // If we are placing a building and press the left mouse button
         if (Input.GetMouseButtonDown(0))
@@ -81,6 +91,16 @@ public class SpawnBuilding : MonoBehaviour
                 // Start producing wood or water
                 prefabclone.GetComponent<ResourceScript>().IsProducing = true;
             }
+
+            // Rond de muispositie af naar het centrum van de cell
+            Vector3 new_position = grid.GetNearestPointOnGrid(hit.point);
+            // Converteer de positie naar een coordinate
+            Vector2Int coordinate = grid.GetCoordinateFromPosition(new_position);
+            // Als het coordinaat bezet is, stop dan met de functie (return)
+            if (grid.IsOccupied[coordinate.x, coordinate.y]) { return; }
+
+            prefabclone.transform.position = new_position;
+            grid.IsOccupied[coordinate.x, coordinate.y] = true;
 
             // Empty the selected prefab
             prefabclone = null;
