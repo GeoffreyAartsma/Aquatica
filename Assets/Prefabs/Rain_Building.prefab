@@ -90,7 +90,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1425825077007852}
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: 0.6534724, y: 0.089, z: 3.7595923}
+  m_LocalPosition: {x: -3.6794407, y: 0.00000011920929, z: -3.0529687}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 224863851544731784}
@@ -208,7 +208,7 @@ MonoBehaviour:
   m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
-  m_FillOrigin: 1
+  m_FillOrigin: 0
 --- !u!114 &114504226418562790
 MonoBehaviour:
   m_ObjectHideFlags: 1
